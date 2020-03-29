@@ -45,13 +45,44 @@ The protease is a crucial element in viral replication and thus by blocking the 
 
 ### Ligand Discovery
 
-The use of deep learing assisted molecule generation shows promise in helping scientists find a compound that acts as a potential cure for any certain deadly virus. By training a deep learning model on corpora of molecules, the model can learn an abstract representation of those molecules and be used to generate new novel ones potentially never seen before. This can catalyze the laborious process of drug discovery.
+The use of deep learnig assisted molecule generation shows promise in helping scientists find a compound that acts as a potential cure for any certain deadly virus. By training a deep learning model on corpora of molecules, the model can learn an abstract representation of those molecules and be used to generate new novel ones potentially never seen before. This can catalyze the laborious process of drug discovery.
 
 ![](./imgs/drug_discovery_process.png)
 
 An AI model may generate a potential novel antiviral, and with the use of any [docking software](https://pyrx.sourceforge.io/), simulate and test the antiviral's binding affinity with a certain disease.
 
 ## Model
+
+### To Run the Model
+
+
+- Ensure **Python 3.6** or later is installed and working.
+- Clone or download the github repository.
+    - Under the *molecule-generation* directory run
+
+    ```Bash
+    pip install -r requirements.txt
+    ```
+    - All dependancies will be installed.
+- To run the model with all default parameters:
+    - Under the *generator* directory run
+    
+    ```Bash
+    python3 main.py
+    ```
+    - Specific flags may be specified to change or add certain parameters
+    
+#### Setting Parameters
+| Flag | Type | Default | Description |
+| :-:  | :-:  | :-:     | :-:         |
+| ```-input_size```| int | 26 | GRU input size |
+| ```-hidden_size```| int | 150 | GRU hidden size |
+| ```-batch_size``` | int | 1 | Input batch size |
+| ```-layers``` | int | 2 | Number of GRU layers |
+| ```-epochs``` | int | 1 | Number of training epochs |
+| ```-bidirectional``` | bool | True | If GRU is bidirectional |
+| ```-model_name``` | str | None | Saved model name |
+| ```-iteration_limit``` | int | 75 | End training after a certain amount of iterations within the epoch [RECOMMENDED] |
 
 The model used in this project is a basic 2 layer GRU recurrent neural network trained on the [MOSES](https://github.com/molecularsets/moses) SMILE database.
 
@@ -74,7 +105,7 @@ The characters in the SMILE strings are mapped to one hot encoded values and giv
 
 The model used is a 2 layer bidirectional GRU-RNN with a hidden size of 150 each layer. 
 
-<img src="./imgs/2_layer_gru.png" width="350" height="350">
+<img src="./imgs/2_layer_gru.png" width="350" height="350slearning">
 
 The simple model alone is capable of somewhat understanding the SMILE molecule format and generating new molecules on it's own.
 
