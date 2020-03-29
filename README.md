@@ -74,7 +74,7 @@ The characters in the SMILE strings are mapped to one hot encoded values and giv
 
 The model used is a 2 layer bidirectional GRU-RNN with a hidden size of 150 each layer. 
 
-![](./imgs/2_layer_gru.png)
+<img src="./imgs/2_layer_gru.png" width="350" height="350">
 
 The simple model alone is capable of somewhat understanding the SMILE molecule format and generating new molecules on it's own.
 
