@@ -180,3 +180,7 @@ This is a simple and basic proof of concept project that shows the potential for
 > [Anon. 2015. Protease Inhibitors: Killing Viral Replication: AG Scientific Blog. (December 2015). Retrieved March 28, 2020 from https://agscientific.com/blog/2015/12/protease-inhibitors-kill/](https://agscientific.com/blog/2015/12/protease-inhibitors-kill/)
 
 > [Christian Steinkühler. 1970. Viral Proteases. (January 1970). Retrieved March 28, 2020 from https://link.springer.com/referenceworkentry/10.1007/978-3-540-38918-7_146](https://link.springer.com/referenceworkentry/10.1007%2F978-3-540-38918-7_146)
+
+## Notice
+
+This repository is not maintained; it is a pretty old experiment, and there is no guarantee that anything still functions properly anymore. 

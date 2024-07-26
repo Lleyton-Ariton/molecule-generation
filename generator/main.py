@@ -1,17 +1,12 @@
-import os
-import time
-import random
 import argparse
 import fileinput
-import numpy as np
+
 from typing import *
 
 import torch
 import torch.nn as nn
 import torch.onnx as onnx
 import torch.optim as optim
-import torch.functional as F
-from torch.autograd import Variable
 
 """
 import rdkit
@@ -19,8 +14,6 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem import Draw
 """
-
-from cortecx.construction import tools as t
 
 
 def _parse_moses(fp: str, limit: int=None) -> Tuple[List[str], List[str]]:
@@ -53,13 +46,28 @@ def _create_char_embeddings(data: List[str]) -> Dict:
     return matrix
 
 
-def _encode_smile(smile: str, embedding_matrix: Dict, padding: bool=True,
-                 pad_len: int=None, pad_char: int=0) -> List[int]:
+def _padding(data: List[int], pad_len: int, value: int = 0, pad_type='after') -> List[int]:
+    pad_amount = pad_len - len(data)
+
+    if pad_type == 'after':
+        if pad_amount > 0:
+            data.extend([value for _ in range(pad_amount)])
+
+        if pad_amount < 0:
+            data = data[:pad_len]
+
+    if pad_type == 'before':
+        data = [value for _ in range(pad_amount)] + data
+
+    return data
+
+
+def _encode_smile(smile: str, embedding_matrix: Dict, padding: bool = True, pad_len: int = None, value: int = 0) -> List[int]:
     encoded = [embedding_matrix[char] for char in smile]
     if padding:
         if pad_len is None:
             raise ValueError('pad_len must not be None')
-        encoded = t.padding(encoded, pad_len=pad_len, pad_char=pad_char)
+        encoded = _padding(encoded, pad_len=pad_len, value=value)
 
     return encoded
 
